@@ -1,21 +1,5 @@
 import random
 
-def turn(curr_player, used_arr, play1, play2):
-    p = 0
-    if (curr_player == play1):
-        while ((p := int(input(f"Enter a number to place {curr_player}: "))) not in range(1, 10)):
-            print("Number out of range.")
-
-        ## checks if place has already been used
-        while(p in used_arr):
-            p = int(input("Place already used. Please pick another: "))
-    
-    elif (curr_player == play2):
-        while ((p := random.randint(1, 9)) in used_arr):
-                p = random.randint(1, 9)
-    
-    return p
-    
 def generate_board(board, ref_board):
     for row in range(3):
         print(*board[row], end="")
@@ -88,14 +72,15 @@ def game():
         game_board = [["|", "_", "|", "_", "|", "_", "|"],
                       ["|", "_", "|", "_", "|", "_", "|"],
                       ["|", "_", "|", "_", "|", "_", "|"]]
-        
+    
+        p1, p2 = '', ''
+        place = 0
         win_flag = False
         draw_flag = False
-        p1, p2 = '', ''
-        curr_player = ''
+        who_wins = ''
         arr = [' '] * 9
         used = []
-        
+
         while ((token := input("Choose X or O (Q to quit): ").upper()) not in ('X', 'O', 'Q')):
             print("Invalid choice, try again.")
 
@@ -107,23 +92,27 @@ def game():
         else:
             p1 = 'X'
             p2 = 'O'
-        curr_player = p1
         print()
         generate_board(board=game_board, ref_board=reference_board)
         print()
         while(not win_flag and not draw_flag):
             print()
-            print(f"{curr_player}'s turn")    
-            place = turn(curr_player=curr_player, used_arr=used, play1=p1, play2=p2)
+            ## p1 turn
+            print(f"{p1}'s turn")  
+            while ((place := int(input(f"Enter a number to place {p1}: "))) not in range(1, 10)):
+                print("Number out of range.")
+
+            ## checks if place has already been used
+            while(place in used):
+                place = int(input("Place already used. Please pick another: "))
+            
             print()
-            arr[place - 1] = curr_player
+            arr[place - 1] = p1
             used.append(place)
-            add_to_board(board=game_board, place=place, player=curr_player)
+            add_to_board(board=game_board, place=place, player=p1)
             print()
             generate_board(board=game_board, ref_board=reference_board)
             print()
-
-            ## -- checking draw or win conditions --
             if (draw_flag := check_draw(used)):
                 loop_flag = False
                 break
@@ -131,14 +120,21 @@ def game():
                 loop_flag = False
                 break
 
-            ## -- updating current player either p1 or p2
-            ## update to one line python
-            if (curr_player == p1):
-                curr_player = p2
-            elif (curr_player == p2):
-                curr_player = p1
+            ## p2's turn
+            while ((place := random.randint(1, 9)) in used):
+                place = random.randint(1, 9)
+    
+            print(f"{p2}'s turn")    
+            arr[place - 1] = p2
+            used.append(place)
+            add_to_board(board=game_board, place=place, player=p2)
+            generate_board(board=game_board, ref_board=reference_board)
+            if (draw_flag := check_draw(used)):
+                loop_flag = False
+                break
+            if(win_flag := check_win(array=arr)):
+                loop_flag = False
 
-        ## -- asking player if they want to replay
         if (not loop_flag):
             if ((input("Play again? (Y/N): ")).upper() == 'Y'):
                 loop_flag = True
@@ -146,6 +142,7 @@ def game():
                 print("Goodbye!")
                 exit(1)
         
+
 
 '''
    1     2     3
