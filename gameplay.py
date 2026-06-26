@@ -139,6 +139,7 @@ def game():
             elif (curr_player == p2):
                 curr_player = p1
 
+        ## -- asking player if they want to replay
         if (not loop_flag):
             if ((input("Play again? (Y/N): ")).upper() == 'Y'):
                 loop_flag = True
