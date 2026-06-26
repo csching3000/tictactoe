@@ -96,7 +96,6 @@ def game():
         arr = [' '] * 9
         used = []
         
-        
         while ((token := input("Choose X or O (Q to quit): ").upper()) not in ('X', 'O', 'Q')):
             print("Invalid choice, try again.")
 
