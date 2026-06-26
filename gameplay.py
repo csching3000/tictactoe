@@ -74,10 +74,10 @@ def game():
                       ["|", "_", "|", "_", "|", "_", "|"]]
     
         p1, p2 = '', ''
-        curr_player = ''
         place = 0
         win_flag = False
         draw_flag = False
+        who_wins = ''
         arr = [' '] * 9
         used = []
 
