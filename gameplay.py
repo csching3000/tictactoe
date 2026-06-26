@@ -1,5 +1,38 @@
 import random
 
+def turn(curr_player):
+    if (curr_player == p1):
+        while ((place := int(input(f"Enter a number to place {curr_player}: "))) not in range(1, 10)):
+            print("Number out of range.")
+
+        ## checks if place has already been used
+        while(place in used):
+            place = int(input("Place already used. Please pick another: "))
+    
+    elif (curr_player == p2):
+        while ((place := random.randint(1, 9)) in used):
+                place = random.randint(1, 9)
+    
+    print()
+    arr[place - 1] = curr_player
+    used.append(place)
+    add_to_board(board=game_board, place=place, player=p1)
+    print()
+    generate_board(board=game_board, ref_board=reference_board)
+    print()
+    if (draw_flag := check_draw(used)):
+        loop_flag = False
+        break
+    if(win_flag := check_win(array=arr)):
+        loop_flag = False
+        break
+    if (curr_player == p1):
+        curr_player = p2
+    elif (curr_player == p2):
+        curr_player = p1
+
+
+
 def generate_board(board, ref_board):
     for row in range(3):
         print(*board[row], end="")
