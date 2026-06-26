@@ -74,7 +74,6 @@ row = {1: 0, 2: 0, 3: 0, 4: 1, 5: 1, 6: 1, 7: 2, 8: 2, 9: 2}
 col = {1: 1, 2: 3, 3: 5, 4: 1, 5: 3, 6: 5, 7: 1, 8: 3, 9: 5}
 
 
-
 def game():
 
     reference_board = [["|", "1", "|", "2", "|", "3", "|"],
@@ -82,13 +81,6 @@ def game():
                    ["|", "7", "|", "8", "|", "9", "|"]]
 
     loop_flag = True
-    win_flag = False
-    draw_flag = False
-    p1, p2 = '', ''
-    used = []
-    curr_player = ''
-    arr = [' '] * 9
-    
     print()
 
     while (loop_flag):
@@ -96,6 +88,13 @@ def game():
         game_board = [["|", "_", "|", "_", "|", "_", "|"],
                       ["|", "_", "|", "_", "|", "_", "|"],
                       ["|", "_", "|", "_", "|", "_", "|"]]
+        
+        win_flag = False
+        draw_flag = False
+        p1, p2 = '', ''
+        used = []
+        curr_player = ''
+        arr = [' '] * 9
         
 
         while ((token := input("Choose X or O (Q to quit): ").upper()) not in ('X', 'O', 'Q')):
@@ -143,7 +142,6 @@ def game():
                 print("Goodbye!")
                 exit(1)
         
-
 
 '''
    1     2     3
