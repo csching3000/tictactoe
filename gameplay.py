@@ -114,7 +114,6 @@ def game():
         print()
         while(not win_flag and not draw_flag):
             print()
-            ## p1 turn
             print(f"{curr_player}'s turn")    
             place = turn(curr_player=curr_player, used_arr=used, play1=p1, play2=p2)
             print()
@@ -124,12 +123,17 @@ def game():
             print()
             generate_board(board=game_board, ref_board=reference_board)
             print()
+
+            ## -- checking draw or win conditions --
             if (draw_flag := check_draw(used)):
                 loop_flag = False
                 break
             if(win_flag := check_win(array=arr)):
                 loop_flag = False
                 break
+
+            ## -- updating current player either p1 or p2
+            ## update to one line python
             if (curr_player == p1):
                 curr_player = p2
             elif (curr_player == p2):
