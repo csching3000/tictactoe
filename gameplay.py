@@ -17,10 +17,16 @@ def turn(curr_player, used_arr, play1, play2):
     return p
     
 def generate_board(board, ref_board):
+    print(border.center(total_width))
+    print(empty_row)
+    
     for row in range(3):
+        print(f"{' ' * half_width}*{' ' * half_width}", end="")
         print(*board[row], end="")
-        print("  ", end="")
-        print(*ref_board[row])
+        print(" " * (half_width+2), end="")
+        print(*ref_board[row], end="")
+        print(f"{' ' * half_width}*")
+
 
 def add_to_board(board, place, player):
     ## getting indexes of the 2D game board array
@@ -69,10 +75,16 @@ def check_win(array):
         return True
     return False
 
+# --- border lengths
+total_width = 80
+border_width = 60
+half_width = int((total_width - border_width) / 2)
+empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
+border = "*" * border_width
+
 ## -- assigning row+col indexes to spaces --
 row = {1: 0, 2: 0, 3: 0, 4: 1, 5: 1, 6: 1, 7: 2, 8: 2, 9: 2}
 col = {1: 1, 2: 3, 3: 5, 4: 1, 5: 3, 6: 5, 7: 1, 8: 3, 9: 5}
-
 
 def game():
 
