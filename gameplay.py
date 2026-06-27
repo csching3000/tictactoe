@@ -132,7 +132,6 @@ def game():
                 break
 
             ## -- updating current player either p1 or p2
-            ## update to one line python
             curr_player = p2 if (curr_player == p1) else p1
 
         ## -- asking player if they want to replay
