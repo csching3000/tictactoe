@@ -1,14 +1,15 @@
 import sys
 from screen import generate_screen
-from options import print_options, options
+from options import print_options
 from gameplay import game
 
 def main():
     try:
         generate_screen()
         print()
-        op_index = [x + 1 for x in list(range(len(options)))]
-        while (int(selected := print_options()) not in op_index ):
+        selected, op = print_options()
+        op_index = [x + 1 for x in list(range(len(op)))]
+        while (int(selected) not in op_index ):
             selected = input("Option not listed. Pick another: ")
         if (int(selected) == op_index[0]):
             generate_screen()

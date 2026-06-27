@@ -1,8 +1,6 @@
 from screen import  total_width, v_pad
 
-# --- GLOBAL VARIABLES ---
-options = ["Play", "Exit"]
-
+# --- GLOBAL BORDER VARIABLES ---
 border_width = 60
 half_width = int((total_width - border_width) / 2)
 border = '*' * border_width
@@ -11,6 +9,7 @@ empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
 def print_options():
     
     word = "OPTIONS"
+    options = ["Play", "Exit"]
     input_str = "Please select which option: "
 
     # --- PRINT OPTIONS BOX ---
@@ -50,4 +49,4 @@ def print_options():
     print(empty_row)
     print(border.center(total_width))
     
-    return int(selected)
+    return int(selected), options
