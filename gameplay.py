@@ -55,10 +55,10 @@ def check_win(array):
             return True
     for col in zip(*two_d_list):
         if(list(col) == x_win):
-            print("X wins")
+            print("X wins!")
             return True
         elif (list(col) == o_win):
-            print("O wins")
+            print("O wins!")
             return True
     ## -- checking diagonals --
     if ([array[0], array[4], array[8]] == x_win or [array[2], array[4], array[6]] == x_win):
@@ -133,10 +133,7 @@ def game():
 
             ## -- updating current player either p1 or p2
             ## update to one line python
-            if (curr_player == p1):
-                curr_player = p2
-            elif (curr_player == p2):
-                curr_player = p1
+            curr_player = p2 if (curr_player == p1) else p1
 
         ## -- asking player if they want to replay
         if (not loop_flag):
