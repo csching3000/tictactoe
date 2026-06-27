@@ -17,15 +17,17 @@ def turn(curr_player, used_arr, play1, play2):
     return p
     
 def generate_board(board, ref_board):
+
     print(border.center(total_width))
     print(empty_row)
-    
+    b_string = ' ' * half_width
+
     for row in range(3):
-        print(f"{' ' * half_width}*{' ' * half_width}", end="")
+        print(f"{b_string}*{b_string}", end="")
         print(*board[row], end="")
         print(" " * (half_width+2), end="")
         print(*ref_board[row], end="")
-        print(f"{' ' * half_width}*")
+        print(f"{b_string}*")
 
 
 def add_to_board(board, place, player):

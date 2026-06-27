@@ -46,4 +46,4 @@ def print_options():
     print(empty_row)
     print(border.center(total_width))
     
-    return int(selected)
+    return int(selected), options

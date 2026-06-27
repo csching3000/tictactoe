@@ -7,16 +7,24 @@ def main():
     try:
         generate_screen()
         print()
-        selected = print_options()
-        while (int(selected) != 2 and int(selected) != 1):
+        selected, op = print_options()
+        op_index = [x + 1 for x in list(range(len(op)))]
+        while (int(selected) not in op_index ):
             selected = input("Option not listed. Pick another: ")
-        if (int(selected) == 1):
+        if (int(selected) == op_index[0]):
             game()
-        elif(selected == 2):
+        elif(selected == op_index[1] ):
             print("Goodbye!")
-                
-    except Exception:
-        print("Error")
+
+        ## --- one line while loop
+        '''while int(selected := print_options()[0]) not in range(1, len(print_options()[1]) + 1):
+            pass '''
+        
+    except Exception as e:
+        if (type(e).__name__ == "ValueError"):
+            print("Invalid value entered")
+        else:
+            print(type(e).__name__)
 
 if __name__ == "__main__":
     sys.exit(main())
