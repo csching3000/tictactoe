@@ -115,7 +115,6 @@ def game():
             print()
             print(f"{curr_player}'s turn")    
             place = turn(curr_player=curr_player, used_arr=used, play1=p1, play2=p2)
-            print()
             arr[place - 1] = curr_player
             used.append(place)
             add_to_board(board=game_board, place=place, player=curr_player)
