@@ -1,4 +1,6 @@
 import random
+from screen import total_width
+from options import half_width, border, empty_row
 
 def turn(curr_player, used_arr, play1, play2):
     p = 0
@@ -29,6 +31,7 @@ def generate_board(board, ref_board):
         print(*ref_board[row], end="")
         print(f"{b_string}*")
 
+    print(empty_row)
 
 def add_to_board(board, place, player):
     ## getting indexes of the 2D game board array
@@ -77,13 +80,6 @@ def check_win(array):
         return True
     return False
 
-# --- border lengths
-total_width = 80
-border_width = 60
-half_width = int((total_width - border_width) / 2)
-empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
-border = "*" * border_width
-
 ## -- assigning row+col indexes to spaces --
 row = {1: 0, 2: 0, 3: 0, 4: 1, 5: 1, 6: 1, 7: 2, 8: 2, 9: 2}
 col = {1: 1, 2: 3, 3: 5, 4: 1, 5: 3, 6: 5, 7: 1, 8: 3, 9: 5}
@@ -91,8 +87,8 @@ col = {1: 1, 2: 3, 3: 5, 4: 1, 5: 3, 6: 5, 7: 1, 8: 3, 9: 5}
 def game():
 
     reference_board = [["|", "1", "|", "2", "|", "3", "|"],
-                   ["|", "4", "|", "5", "|", "6", "|"],
-                   ["|", "7", "|", "8", "|", "9", "|"]]
+                       ["|", "4", "|", "5", "|", "6", "|"],
+                       ["|", "7", "|", "8", "|", "9", "|"]]
 
     loop_flag = True
     print()
@@ -134,7 +130,7 @@ def game():
             add_to_board(board=game_board, place=place, player=curr_player)
             print()
             generate_board(board=game_board, ref_board=reference_board)
-            print()
+            
 
             ## -- checking draw or win conditions --
             if (draw_flag := check_draw(used)):

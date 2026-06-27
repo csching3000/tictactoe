@@ -1,3 +1,8 @@
+total_width = 80
+v_pad = 1         # Top/Bottom space
+border = "*" * total_width
+empty_row = "*" + " " * (total_width - 2) + "*"
+
 def generate_screen():
     letters = {
         'T': ['*****', '  *  ', '  *  ', '  *  ', '  *  '],
@@ -11,12 +16,6 @@ def generate_screen():
 
     word = "TIC-TAC-TOE"
     rows = [" ".join(letters[char][i] for char in word) for i in range(5)]
-
-    total_width = 80
-    v_pad = 1         # Top/Bottom space
-
-    border = "*" * total_width
-    empty_row = "*" + " " * (total_width - 2) + "*"
 
     # 1. Top
     print(border)

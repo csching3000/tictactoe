@@ -1,16 +1,20 @@
+from screen import  total_width, v_pad
+
+options = ["Play", "Exit"]
+
+border_width = 60
+half_width = int((total_width - border_width) / 2)
+border = '*' * border_width
+empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
+
 def print_options():
     word = "OPTIONS"
-    total_width = 80
-    border_width = 60
-    half_width = int((total_width - border_width) / 2)
-    v_pad = 1
-    border = '*' * border_width
-    empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
+    
     input_str = "Please select which option: "
 
 
     # --- PRINT OPTIONS BOX ---
-    options = ["Play", "Exit"]
+    
     max_opt_len = max(len(opt) for opt in options)
     
     # --- PRINT TOP BORDER ---
@@ -46,4 +50,4 @@ def print_options():
     print(empty_row)
     print(border.center(total_width))
     
-    return int(selected), options
+    return int(selected)
