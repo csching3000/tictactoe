@@ -1,3 +1,4 @@
+# --- GLOBAL VARIABLES ---
 total_width = 80
 v_pad = 1         # Top/Bottom space
 border = "*" * total_width
