@@ -6,7 +6,6 @@ from gameplay import game
 def main():
     try:
         generate_screen()
-        print()
         selected, op = print_options()
         op_index = [x + 1 for x in list(range(len(op)))]
         while (int(selected) not in op_index ):

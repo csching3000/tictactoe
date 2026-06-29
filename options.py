@@ -1,10 +1,7 @@
-from screen import  total_width, v_pad
+from board_constants import TOTAL_WIDTH, BORDER_WIDTH, HALF_WIDTH, BORDER, V_PAD
 
 # --- GLOBAL BORDER VARIABLES ---
-border_width = 60
-half_width = int((total_width - border_width) / 2)
-border = '*' * border_width
-empty_row = " " * (half_width) + "*" + " " * (border_width - 2) + "*"
+empty_row = " " * (HALF_WIDTH) + "*" + " " * (BORDER_WIDTH - 2) + "*"
 
 def print_options():
     
@@ -17,12 +14,12 @@ def print_options():
     max_opt_len = max(len(opt) for opt in options)
     
     # --- PRINT TOP BORDER ---
-    print(border.center(total_width))
+    print(BORDER.center(TOTAL_WIDTH))
     print(empty_row)
-    print(f"{' ' * 10}*{word.center(border_width - 2)}*")
+    print(f"{' ' * 10}*{word.center(BORDER_WIDTH - 2)}*")
     
     # --- PRINT EMPTY ROW
-    for _ in range(v_pad):
+    for _ in range(V_PAD):
         print(empty_row)
 
     # --- PRINT OPTIONS ---
@@ -33,20 +30,20 @@ def print_options():
         #formatted_opt = f"{opt.ljust(max_opt_len)}"
         
         # Center that entire block inside the box
-        print(f"{' ' * (half_width)}*{formatted_opt.center(border_width - 2)}*")
+        print(f"{' ' * (HALF_WIDTH)}*{formatted_opt.center(BORDER_WIDTH - 2)}*")
     
     # --- PRINT BOTTOM PORTION ---
     print(empty_row)
-    print(f"{' ' * (half_width)}*{input_str.center(border_width - 2)}*")
+    print(f"{' ' * (HALF_WIDTH)}*{input_str.center(BORDER_WIDTH - 2)}*")
     print(empty_row)
     
     # --- PRINT INPUT AND MOVE CURSOR --- \033 escape ANSI
     # \033[2A = cursor moves 2 row up \033[49C = cursor moves 49 spaces right
-    selected = input(f"{border.center(total_width)}\r\033[2A\033[54C")
+    selected = input(f"{BORDER.center(TOTAL_WIDTH)}\r\033[2A\033[54C")
     
     # --- REPRINT BOTTOM PORTION ---
     ## so border does not disappear change after input
     print(empty_row)
-    print(border.center(total_width))
+    print(BORDER.center(TOTAL_WIDTH))
     
     return int(selected), options

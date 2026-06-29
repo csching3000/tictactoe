@@ -1,6 +1,6 @@
 import random
-from screen import total_width
-from options import half_width, border, empty_row
+from board_constants import TOTAL_WIDTH, BORDER, BORDER_WIDTH, HALF_WIDTH, EMPTY_ROW
+from screen import generate_screen
 
 def turn(curr_player, used_arr, play1, play2):
     p = 0
@@ -20,18 +20,18 @@ def turn(curr_player, used_arr, play1, play2):
     
 def generate_board(board, ref_board):
 
-    print(border.center(total_width))
-    print(empty_row)
-    b_string = ' ' * half_width
+    print(BORDER.center(TOTAL_WIDTH))
+    print(EMPTY_ROW)
+    b_string = ' ' * HALF_WIDTH + '*'
 
     for row in range(3):
-        print(f"{b_string}*{b_string}", end="")
+        print(f"{b_string}{' ' * HALF_WIDTH}", end="")
         print(*board[row], end="")
-        print(" " * (half_width+2), end="")
+        print(' ' * (HALF_WIDTH+2), end="")
         print(*ref_board[row], end="")
-        print(f"{b_string}*")
+        print(f"{b_string}")
 
-    print(empty_row)
+    print(EMPTY_ROW)
 
 def add_to_board(board, place, player):
     ## getting indexes of the 2D game board array
@@ -106,8 +106,16 @@ def game():
         arr = [' '] * 9
         used = []
         
-        while ((token := input("Choose X or O (Q to quit): ").upper()) not in ('X', 'O', 'Q')):
+        token_str = "Choose X or O (Q to quit): "
+
+        generate_screen()
+        print(BORDER.center(TOTAL_WIDTH))
+        print(EMPTY_ROW)
+        print(f"{' ' * HALF_WIDTH}*", end=' ')
+        while ((token := input(f"{token_str.center(BORDER_WIDTH-3)}*\033[16D").upper()) not in ('X', 'O', 'Q')):
             print("Invalid choice, try again.")
+        print(EMPTY_ROW)
+        print(BORDER.center(TOTAL_WIDTH))
 
         if (token == 'Q'):
             exit(1)
@@ -119,6 +127,7 @@ def game():
             p2 = 'O'
         curr_player = p1
         print()
+        generate_screen()
         generate_board(board=game_board, ref_board=reference_board)
         print()
         while(not win_flag and not draw_flag):
@@ -128,6 +137,8 @@ def game():
             arr[place - 1] = curr_player
             used.append(place)
             add_to_board(board=game_board, place=place, player=curr_player)
+            print()
+            generate_screen()
             print()
             generate_board(board=game_board, ref_board=reference_board)
             
