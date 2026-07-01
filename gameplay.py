@@ -128,7 +128,6 @@ def game():
         print()
         generate_screen()
         generate_board(board=game_board, ref_board=reference_board)
-        #print()
         while(not win_flag and not draw_flag):
             print(f"{curr_player}'s turn")    
             place = turn(curr_player=curr_player, used_arr=used, play1=p1, play2=p2)
@@ -148,10 +147,10 @@ def game():
                 loop_flag = False
                 break
 
-            ## -- updating current player either p1 or p2
+            ## -- updating current player to either p1 or p2 --
             curr_player = p2 if (curr_player == p1) else p1
 
-        ## -- asking player if they want to replay
+        ## -- asking player if they want to replay --
         if (not loop_flag):
             if ((input("Play again? (Y/N): ")).upper() == 'Y'):
                 loop_flag = True
