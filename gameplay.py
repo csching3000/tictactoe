@@ -21,7 +21,7 @@ def turn(curr_player, used_arr, play1, play2):
 def generate_board(board, ref_board):
 
     print(BORDER.center(TOTAL_WIDTH))
-    print(EMPTY_ROW)
+    [print(EMPTY_ROW) for _ in range(2)]
     b_string = ' ' * HALF_WIDTH + '*'
 
     for row in range(3):
@@ -107,12 +107,11 @@ def game():
         used = []
         
         token_str = "Choose X or O (Q to quit): "
-
-        generate_screen()
-        print(BORDER.center(TOTAL_WIDTH))
+        
+        generate_board(board=game_board, ref_board=reference_board)
         print(EMPTY_ROW)
         print(f"{' ' * HALF_WIDTH}*", end=' ')
-        while ((token := input(f"{token_str.center(BORDER_WIDTH-3)}*\033[16D").upper()) not in ('X', 'O', 'Q')):
+        while ((token := input(f"{token_str.center(BORDER_WIDTH-3)}*\n{EMPTY_ROW}\n{' '*HALF_WIDTH}{BORDER}\r\033[2A\033[54C").upper()) not in ('X', 'O', 'Q')):
             print("Invalid choice, try again.")
         print(EMPTY_ROW)
         print(BORDER.center(TOTAL_WIDTH))
@@ -129,9 +128,8 @@ def game():
         print()
         generate_screen()
         generate_board(board=game_board, ref_board=reference_board)
-        print()
+        #print()
         while(not win_flag and not draw_flag):
-            print()
             print(f"{curr_player}'s turn")    
             place = turn(curr_player=curr_player, used_arr=used, play1=p1, play2=p2)
             arr[place - 1] = curr_player
@@ -139,7 +137,6 @@ def game():
             add_to_board(board=game_board, place=place, player=curr_player)
             print()
             generate_screen()
-            print()
             generate_board(board=game_board, ref_board=reference_board)
             
 

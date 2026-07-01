@@ -45,5 +45,6 @@ def print_options():
     ## so border does not disappear change after input
     print(empty_row)
     print(BORDER.center(TOTAL_WIDTH))
-    
+    print()
+
     return int(selected), options

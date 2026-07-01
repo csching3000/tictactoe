@@ -11,7 +11,9 @@ def main():
         while (int(selected) not in op_index ):
             selected = input("Option not listed. Pick another: ")
         if (int(selected) == op_index[0]):
+            print()
             generate_screen()
+            print("\033[2A")
             game()
         elif(selected == op_index[1] ):
             print("Goodbye!")
