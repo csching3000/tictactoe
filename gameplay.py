@@ -110,9 +110,11 @@ def game():
         
         generate_board(board=game_board, ref_board=reference_board)
         print(EMPTY_ROW)
-        print(f"{' ' * HALF_WIDTH}*", end=' ')
-        while ((token := input(f"{token_str.center(BORDER_WIDTH-3)}*\n{EMPTY_ROW}\n{' '*HALF_WIDTH}{BORDER}\r\033[2A\033[54C").upper()) not in ('X', 'O', 'Q')):
-            print("Invalid choice, try again.")
+        #print(f"{' ' * HALF_WIDTH}*", end=' ')
+        while ((token := input(f"{' '*HALF_WIDTH}*{token_str.center(BORDER_WIDTH-2)}*\n{EMPTY_ROW}\n{' '*HALF_WIDTH}{BORDER}\r\033[2A\033[53C").upper()) not in ('X', 'O', 'Q')):
+            err = "Invalid choice, try again"
+            print(f"{' ' * HALF_WIDTH}*", end='')
+            print(f"{err.center(BORDER_WIDTH-2)}*")
         print(EMPTY_ROW)
         print(BORDER.center(TOTAL_WIDTH))
 
@@ -138,15 +140,14 @@ def game():
             generate_screen()
             generate_board(board=game_board, ref_board=reference_board)
             
-
             ## -- checking draw or win conditions --
-            if (draw_flag := check_draw(used)):
-                loop_flag = False
-                break
             if(win_flag := check_win(array=arr)):
                 loop_flag = False
                 break
-
+            if (draw_flag := check_draw(used)):
+                loop_flag = False
+                break
+            
             ## -- updating current player to either p1 or p2 --
             curr_player = p2 if (curr_player == p1) else p1
 
